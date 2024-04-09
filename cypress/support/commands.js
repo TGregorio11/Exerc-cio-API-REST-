@@ -1,28 +1,14 @@
-Cypress.Commands.add('token', (email, senha) => {
+Cypress.Commands.add('cadastrarUsuario', (nome, email, password, administrador) => {
     cy.request({
         method: 'POST',
-        url: 'login',
+        url: 'Usuario',
+        headers: { email: password },
         body: {
-            "email": email,
-            "password": senha 
-        }
-    }).then((response) => {
-        expect(response.status).to.equal(200)
-        return response.body.authorization
+            "nome": "Thiago Henrique",
+            "email": "Thiago@qa.com.br",
+            "password": "teste",
+            "administrador": "true"
+            }
+        
     })
- })
-
- Cypress.Commands.add('cadastrarProduto' , (token, produto, preco, descricao, quantidade) =>{
-    cy.request({
-        method: 'POST', 
-        url: 'produtos',
-        headers: {authorization: token}, 
-        body: {
-            "nome": produto,
-            "preco": preco,
-            "descricao": descricao,
-            "quantidade": quantidade
-          }, 
-          failOnStatusCode: false
-    })
- })
+})
